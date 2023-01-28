@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import Nav from './LandingPage'
 
 export default function Signup() {
 
     const[data, setData] = React.useState({
-        Name: "",
+        firstName: "",
+        lastName:"",
         email: "",
-        pass:"",
+        clipper: "",
         ContactNumber:"",
+        pass:"",
         confirmpass: "",
         isChecked: false,
 
@@ -28,7 +31,14 @@ export default function Signup() {
 
     function handleSubmit(event) {
         if(data.pass === data.confirmpass && data.isChecked === true){
-            console.log("Successfully singed up");
+            // console.log("Successfully singed up");
+            axios.post('http://localhost:3000/submitform', data)
+                .then(response => {
+                console.log(response);
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
         }else{
             console.log("Passwords do not match");
             event.preventDefault();
@@ -44,10 +54,19 @@ export default function Signup() {
                 <h1>Sign Up Page</h1>
                 <input 
                     type="text" 
-                    placeholder="Name"
-                    name="Name"
+                    placeholder="First Name"
+                    name="firstName"
                     onChange={changeData}
-                    value = {data.Name}
+                    value = {data.firstName}
+                    />
+                <br />
+                <br />
+                <input 
+                    type="text" 
+                    placeholder="Last Name"
+                    name="lastName"
+                    onChange={changeData}
+                    value = {data.lastName}
                     />
                 <br />
                 <br />
@@ -66,6 +85,15 @@ export default function Signup() {
                     name="email"
                     onChange={changeData}
                     value = {data.email}
+                    />
+                <br />
+                <br />
+                <input 
+                    type="text" 
+                    placeholder="Clipper ID"
+                    name="clipper"
+                    onChange={changeData}
+                    value = {data.clipper}
                     />
                 <br />
                 <br />
