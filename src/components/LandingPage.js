@@ -8,7 +8,7 @@ export default function Navbar(){
     return(
         <header>
             <div className='nav'>
-                <Link to="/"><h2>Clipper</h2></Link>
+                <Link to="/"><h2>GoBay</h2></Link>
                     <div className='LS'>
                         <Link to="/login"><button>Login</button></Link>
                         <Link to="/register"><button>Sign Up</button></Link>
